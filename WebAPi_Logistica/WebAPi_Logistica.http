@@ -1,0 +1,6 @@
+@WebAPi_Logistica_HostAddress = http://localhost:5014
+
+GET {{WebAPi_Logistica_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
