@@ -7,7 +7,7 @@ using WebAPi_Logistica.Service.FuncionarioService;
 
 namespace WebAPi_Logistica.Controllers;
 
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 [ApiController]
 public class FuncionarioController : ControllerBase
 {
@@ -23,12 +23,12 @@ public class FuncionarioController : ControllerBase
         return Ok(await _funcionarioInterface.GetFuncionarios());
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> GetFuncionariosById(int id)
+    [HttpGet("{Id}")]
+    public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> GetFuncionariosById(int Id)
     {
         //return Ok(await _funcionarioInterface.GetFuncionarioById(id));
 
-        ServiceResponse<FuncionarioModel> serviceResponse = await _funcionarioInterface.GetFuncionarioById(id);
+        ServiceResponse<FuncionarioModel> serviceResponse = await _funcionarioInterface.GetFuncionarioById(Id);
         return Ok(serviceResponse);
     }
 

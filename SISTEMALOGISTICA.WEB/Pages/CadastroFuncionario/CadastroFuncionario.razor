@@ -1,0 +1,53 @@
+﻿@page "/cadastro-funcionario"
+@using SISTEMALOGISTICA.WEB.Models
+@using SISTEMALOGISTICA.WEB.Enum
+@using SISTEMALOGISTICA.WEB.Services
+
+<PageTitleComponent Title="Cadastro de Funcionário" />
+
+
+
+<MudTable Items="@funcionarios">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Funcionarios</MudText>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Nome</MudTh>
+        <MudTh>Sobrenome</MudTh>
+        <MudTh>Departamento</MudTh>
+        <MudTh>Ativo</MudTh>
+        <MudTh>Turno</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="funcionario">
+        {
+        <MudTd DataLabel="ID">funcionario.id</MudTd>
+        <MudTd DataLabel="Nome">funcionario.Nome</MudTd>
+        <MudTd DataLabel="Sobrenome">funcionario.Sobrenome</MudTd>
+        <MudTd DataLabel="Departamento">funcionario.Departamento</MudTd>
+        <MudTd DataLabel="Ativo">funcionario.Ativo</MudTd>
+        <MudTd DataLabel="Turno">funcionario.Turno</MudTd>
+        }
+
+    </RowTemplate>
+
+</MudTable>
+
+
+
+
+@inject HttpClient http;
+
+@code {
+    private List<FuncionarioModel> funcionarios;
+
+    private List<FuncionarioModel> listFuncionario = new List<FuncionarioModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listFuncionario = await http.GetFromJsonAsync<List<FuncionarioModel>>("api/Funcionario");
+    }
+}
+
+
+
+
