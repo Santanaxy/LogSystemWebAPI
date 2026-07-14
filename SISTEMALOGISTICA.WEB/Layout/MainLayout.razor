@@ -1,83 +1,38 @@
 ﻿@inherits LayoutComponentBase
- 
-<MudThemeProvider IsDarkMode="_isDark" Theme="@SISTEMALOGISTICA.WEB.Themes.CustomTheme.Theme" />
-<MudPopoverProvider />
-<MudDialogProvider CloseButton="true" />
-<MudSnackbarProvider />
+
+
+<MudThemeProvider />
 
 <MudLayout>
-    <MudAppBar style="border-bottom: 1px solid var(--mud-palette-divider)"
-               Color="Color.Inherit"
-               Elevation="0">
-
-        @if (_open)
-        {
-            <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft"
-                           Color="Color.Default"
-                           Edge="Edge.Start"
-                           Class="pa-1"
-                           Size="Size.Small"
-                           Style="border: 1px solid var(--mud-palette-divider); border-radius:13px"
-                           OnClick="ToggleDrawer" />
-        }
-        else
-        {
-            <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowRight"
-                           Color="Color.Default"
-                           Class="pa-1"
-                           Size="Size.Small"
-                           Style="border: 1px solid var(--mud-palette-divider); border-radius:13px"
-                           Edge="Edge.Start"
-                           OnClick="ToggleDrawer" />
-        }
-
-        @* <MudImage Width="266" Height="40" Fluid="true" Src="assets/images/logo-light.png"></MudImage> *@
-
+    <MudAppBar Class="AppBarCard" Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
-
-        @if (_isDark)
-        {
-            <MudTooltip Text="Modo Claro">
-                <MudIconButton Icon="@Icons.Material.Filled.WbSunny"
-                               @onclick="@ThemeToggle" />
-            </MudTooltip>
-        }
-        else
-        {
-            <MudTooltip Text="Modo Escuro">
-                <MudIconButton Icon="@Icons.Material.Filled.DarkMode"
-                               @onclick="@ThemeToggle" />
-            </MudTooltip>
-        }
-
-        @* <MudIconButton Icon="@Icons.Material.Outlined.Logout" Color="Color.Inherit" OnClick="Logout" /> *@
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
-
-    <MudDrawer @bind-Open="@_open"
-               Breakpoint="Breakpoint.Lg"
-               Elevation="1"
-               Variant="@DrawerVariant.Mini">
-        <NavMenu IsDarkMode="_isDark" IsMenuOpen="_open" />
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
+        <NavMenu />
     </MudDrawer>
-
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
-            @Body
-        </MudContainer>
+        @Body
     </MudMainContent>
 </MudLayout>
-
 @code {
-    private bool _isDark = false;
-    private bool _open = true;
+    bool _drawerOpen = false;
 
-    private void ThemeToggle()
+    void DrawerToggle()
     {
-        _isDark = !_isDark;
-    }
-
-    private void ToggleDrawer()
-    {
-        _open = !_open;
+        _drawerOpen = !_drawerOpen;
     }
 }
+<style>
+
+    
+
+    .AppBarCard {
+        background-color: #175089
+    }
+
+</style>
+ 
+ 
+ 

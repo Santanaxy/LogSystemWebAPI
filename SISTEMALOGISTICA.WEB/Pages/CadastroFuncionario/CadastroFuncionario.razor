@@ -1,50 +1,51 @@
-﻿@page "/cadastro-funcionario"
+﻿@page "/cadastroFuncionario"
+
+
 @using SISTEMALOGISTICA.WEB.Models
 @using SISTEMALOGISTICA.WEB.Enum
 @using SISTEMALOGISTICA.WEB.Services
 
-<PageTitleComponent Title="Cadastro de Funcionário" />
 
+<a>Cadastrar</a>
 
-
-<MudTable Items="@funcionarios">
-    <ToolBarContent>
-        <MudText Typo="Typo.h6">Funcionarios</MudText>
-    </ToolBarContent>
+ 
+<MudTable Items="@funcionarios.Take(6)" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
     <HeaderContent>
+        <MudTh>id</MudTh>
         <MudTh>Nome</MudTh>
         <MudTh>Sobrenome</MudTh>
         <MudTh>Departamento</MudTh>
-        <MudTh>Ativo</MudTh>
+        <MudTh>Status</MudTh>
         <MudTh>Turno</MudTh>
     </HeaderContent>
-    <RowTemplate Context="funcionario">
-        {
-        <MudTd DataLabel="ID">funcionario.id</MudTd>
-        <MudTd DataLabel="Nome">funcionario.Nome</MudTd>
-        <MudTd DataLabel="Sobrenome">funcionario.Sobrenome</MudTd>
-        <MudTd DataLabel="Departamento">funcionario.Departamento</MudTd>
-        <MudTd DataLabel="Ativo">funcionario.Ativo</MudTd>
-        <MudTd DataLabel="Turno">funcionario.Turno</MudTd>
-        }
-
+    <RowTemplate>
+        <MudTd DataLabel="id">@context.id</MudTd>
+        <MudTd DataLabel="Nome">@context.Nome</MudTd>
+        <MudTd DataLabel="Sobrenome">@context.Sobrenome</MudTd>
+        <MudTd DataLabel="Departamento">@context.Departamento</MudTd>
+        <MudTd DataLabel="Ativo">@context.Ativo</MudTd>
+        <MudTd DataLabel="Turno">@context.Turno</MudTd>
     </RowTemplate>
-
 </MudTable>
 
-
+<MudSwitch @bind-Value="_hidePosition" Color="Color.Primary">Hide&nbsp;<b>position</b>&nbsp;when Breakpoint=Xs</MudSwitch>
+<MudSwitch @bind-Value="_loading" Color="Color.Primary">Show Loading</MudSwitch>
 
 
 @inject HttpClient http;
 
 @code {
+
+    private bool _hidePosition;
+    private bool _loading;
+
     private List<FuncionarioModel> funcionarios;
 
     private List<FuncionarioModel> listFuncionario = new List<FuncionarioModel>();
 
     protected override async Task OnInitializedAsync()
     {
-        listFuncionario = await http.GetFromJsonAsync<List<FuncionarioModel>>("api/Funcionario");
+        funcionarios = await http.GetFromJsonAsync<List<FuncionarioModel>>("Api/Funcionario");
     }
 }
 

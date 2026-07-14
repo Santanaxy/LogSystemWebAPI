@@ -1,117 +1,27 @@
-﻿@using SISTEMALOGISTICA.WEB.Models.Constants
+﻿
 
-
-
-@* <MudPaper Width="200px" Class="d-inline-flex py-7" Elevation="0">
-    <MudNavMenu Margin="Margin.Dense" Color="Color.Primary"  Class="mud-width-full">
-        <MudText Typo="Typo.h6" Class="px-4" Icon="@Icons.Material.Outlined.Inbox">Logistica</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Logisticas Entregas</MudText>
-        <MudDivider Class="my-3" />
-        <MudNavLink Match="NavLinkMatch.Prefix" Href="/" Icon="@Icons.Material.Filled.Home">Menu</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.Prefix" Href="/cadastro-funcionario" Icon="@Icons.Material.Filled.People">Cadastro de Funcionario</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.Prefix" Href="weather" Icon="@Icons.Material.Filled._3k">wheather</MudNavLink>
-
+<MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <MudNavMenu Class="mud-width-full">
+        <MudText Typo="Typo.h6" Class="px-4">Sistema de Logistica</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Sistema de Teste</MudText>
+        <MudDivider Class="my-2" />
+        <MudNavLink Href=@AppRoutes.HOME Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+        <MudNavLink Href=@AppRoutes.CADASTRO Icon="@Icons.Material.Rounded.PersonAddAlt">Cadastro de Funcionários</MudNavLink>
+        <MudNavLink Href=@AppRoutes.DASHBOARD Icon=@Icons.Material.Rounded.Insights" IconColor=Color.Error>DashBoard</MudNavLink>
+        @*  <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+            <MudNavLink Href="/users" Icon="@Icons.Material.Filled.People" IconColor="Color.Success">Users</MudNavLink>
+            <MudNavLink Href="/security" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info">Security</MudNavLink>
+        </MudNavGroup> *@
+         
+        <MudNavLink  class="iconLeave" IconColor=Color.Error Href=@AppRoutes.HOME Icon="@Icons.Material.Outlined.DoorFront">Sair</MudNavLink>
     </MudNavMenu>
-</MudPaper> *@
-
-
-
-<MudNavMenu>
-    <MudText Typo="Typo.subtitle1" Class="ml-3 mt-3 w-700">
-        SGM
-    </MudText>
-    <MudDivider Class="mt-2 mb-2" />
-
-    <MudNavMenu Rounded="true" Margin="Margin.Dense" Class="ma-2">
-
-        @* === GERAL === *@
-        @if (IsMenuOpen)
-        {
-            <MudText Typo="Typo.caption" Class="pl-2 mt-2 w-700 mb-1 mud-text-secondary text-uppercase">
-                Geral
-            </MudText>
-        }
-
-        <MudNavLink Href="@AppRoutes.HOME"
-                    ActiveClass="@(IsDarkMode ? "active-dark" : "active-light")"
-                    Match="NavLinkMatch.All"
-                    Icon="@Icons.Material.Outlined.Dashboard">
-            Início
-        </MudNavLink>
-
-        @if (IsMenuOpen)
-        {
-            @* === COMERCIAL === *@
-            <MudText Typo="Typo.caption" Class="pl-2 w-700 mt-4 mb-1 mud-text-secondary text-uppercase">
-                Comercial
-            </MudText>
-        }
-
-        <MudNavLink Href="@AppRoutes.CLIENTES"
-                    ActiveClass="@(IsDarkMode ? "active-dark" : "active-light")"
-                    Icon="@Icons.Material.Outlined.Groups">
-            Clientes
-        </MudNavLink>
-
-        <MudNavLink Href="@AppRoutes.SERVICOS"
-                    ActiveClass="@(IsDarkMode ? "active-dark" : "active-light")"
-                    Icon="@Icons.Material.Outlined.Build">
-            Serviços
-        </MudNavLink>
-
-        <MudNavLink Href="@AppRoutes.ORDENS_SERVICO"
-                    ActiveClass="@(IsDarkMode ? "active-dark" : "active-light")"
-                    Icon="@Icons.Material.Outlined.Assignment">
-            Ordens Serviços
-        </MudNavLink>
-
-        <MudNavLink Href="@AppRoutes.ORCAMENTOS"
-                    ActiveClass="@(IsDarkMode ? "active-dark" : "active-light")"
-                    Icon="@Icons.Material.Outlined.ReceiptLong"
-                    Disabled>
-            Orçamentos
-        </MudNavLink>
-    </MudNavMenu>
-
-</MudNavMenu>
-@code {
-    [Parameter]
-    public bool IsDarkMode { get; set; }
-
-    [Parameter]
-    public bool IsMenuOpen { get; set; }
-}
+</MudPaper>
 
 <style>
-    .mud-nav-link-icon {
-        margin-left: -8px !important;
+
+    .iconLeave {
+        color: #bf0019;
+       
     }
 
-    .mud-nav-link-text {
-        font-weight: 600;
-    }
-
-    /* === MODO LIGHT === */
-    .active-light {
-        background-color: #242C60 !important;
-        color: #ffffff !important;
-    }
-
-        .active-light .mud-nav-link-icon {
-            color: #ffffff !important;
-        }
-
-    /* === MODO DARK === */
-    .active-dark {
-        background-color: #181D35 !important;
-        color: #ffffff !important;
-    }
-
-        .active-dark .mud-nav-link-icon {
-            color: #ffffff !important;
-        }
-
-    .text-uppercase {
-        text-transform: uppercase !important;
-    }
 </style>
